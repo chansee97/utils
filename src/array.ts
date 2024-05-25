@@ -45,7 +45,7 @@ export function uniqueArray<T>(array: readonly T[]): T[] {
  * countOccurrences([1, 2, 2, 2, 4, 5, 5], 2)
  * ```
  */
-export function countOccurrences<T>(array: readonly T[], value:T) {
+export function countOccurrences<T>(array: readonly T[], value: T) {
   return array.reduce((count, v) => v === value ? count + 1 : count, 0);
 }
 
@@ -75,3 +75,30 @@ export function move<T>(arr: T[], from: number, to: number) {
 export function sample<T>(arr: T[], quantity: number = 1) {
   return Array.from({ length: quantity }, _ => arr[Math.round(Math.random() * (arr.length - 1))])
 }
+
+/**
+ * 获取两数组对称差集
+ *
+ * @template T
+ * @param {T[]} a
+ * @param {T[]} b
+ * @returns {T[]}
+ */
+export function difference<T>(a: T[], b: T[]) {
+  const s = new Set(b);
+  return a.filter(x => !s.has(x));
+}
+
+/**
+ * 获取两数组的交集
+ *
+ * @template T
+ * @param {T[]} a
+ * @param {T[]} b
+ * @returns {T[]}
+ */
+export function intersection<T> (a: T[], b: T[]) {
+  const s = new Set(b)
+  return a.filter(i => s.has(i))
+}
+
