@@ -1,7 +1,7 @@
 {
   "name": "@chansee97/utils",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "a collection of common JavaScript / TypeScript utils by @chansee97",
   "author": "Rock Chen <chen.dev@foxmail.com>",
   "license": "MIT",
