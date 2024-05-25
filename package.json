@@ -1,0 +1,68 @@
+{
+  "name": "@chansee97/utils",
+  "type": "module",
+  "version": "0.2.0",
+  "packageManager": "pnpm@9.1.0",
+  "description": "a collection of common JavaScript / TypeScript utils by @chansee97",
+  "author": "Rock Chen <chen.dev@foxmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/chansee97/utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chansee97/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chansee97/utils/issues"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "npx simple-git-hooks",
+    "release": "bumpp --commit --push --tag && npm publish",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.18.1",
+    "@types/node": "^20.12.12",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.3.0",
+    "esno": "^4.7.0",
+    "lint-staged": "^15.2.4",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node vertify-commit.js"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
