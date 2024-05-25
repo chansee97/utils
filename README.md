@@ -1,5 +1,7 @@
 # @chansee97/utils
 
+[![NPM version](https://img.shields.io/npm/v/@chansee97/utils?color=a1b858&label=)](https://www.npmjs.com/package/@chansee97/utils)
+
 个人的工具函数集合，有点乱，但是贵在适合
 
 ## 安装

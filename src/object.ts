@@ -1,4 +1,4 @@
-import { isPrimitive, isObject } from "./is";
+import { isObject, isPrimitive } from './is'
 /**
  * 将对象转换为query。
  *
@@ -12,7 +12,7 @@ import { isPrimitive, isObject } from "./is";
  * ```
  */
 export function buildQuery<T extends Record<any, any>>(object: T): string {
-  return new URLSearchParams(object).toString();
+  return new URLSearchParams(object).toString()
 }
 
 /**
@@ -22,7 +22,7 @@ export function buildQuery<T extends Record<any, any>>(object: T): string {
  * @returns {Record<any, any>}
  */
 export function restoreQuery(query: string): Record<any, any> {
-  return Object.fromEntries(new URLSearchParams(query));
+  return Object.fromEntries(new URLSearchParams(query))
 }
 
 /**
@@ -34,13 +34,14 @@ export function restoreQuery(query: string): Record<any, any> {
  */
 export function buildFormData<T extends Record<any, any>>(object: T): FormData {
   const formData = new FormData()
-  Object.keys(object).forEach(key => {
+  Object.keys(object).forEach((key) => {
     const value = object[key]
     if (Array.isArray(value)) {
       value.forEach((subValue, i) =>
-        formData.append(key + `[${i}]`, subValue)
+        formData.append(`${key}[${i}]`, subValue),
       )
-    } else {
+    }
+    else {
       formData.append(key, object[key])
     }
   })
@@ -66,17 +67,14 @@ export function jsonClone<T extends Record<any, any>>(val: T): T {
  * @returns {T}
  */
 export function deepClone<T>(obj: T): T {
-  if (isPrimitive(obj)) {
+  if (isPrimitive(obj))
     return obj
-  }
 
-  if (typeof obj === 'function') {
+  if (typeof obj === 'function')
     return obj
-  }
 
-  if (Array.isArray(obj)) {
+  if (Array.isArray(obj))
     return obj.map(item => deepClone(item)) as any
-  }
 
   const newObj: Record<string, any> = {}
 
@@ -97,19 +95,21 @@ export function deepClone<T>(obj: T): T {
  * @returns {X}
  */
 export function merge<X extends Record<string | symbol | number, any>>(initial: X, override: X): X {
-  if (!initial || !override) return initial ?? override ?? {}
+  if (!initial || !override)
+    return initial ?? override ?? {}
 
   return Object.entries({ ...initial, ...override }).reduce(
     (acc, [key, value]) => {
       return {
         ...acc,
         [key]: (() => {
-          if (isObject(initial[key])) return merge(initial[key], value)
+          if (isObject(initial[key]))
+            return merge(initial[key], value)
           return value
-        })()
+        })(),
       }
     },
-    {} as X
+    {} as X,
   )
 }
 
@@ -118,9 +118,9 @@ export function merge<X extends Record<string | symbol | number, any>>(initial: 
  *
  * @template {Record<any, any>} T
  * @param {T} obj
- * @param {any[]} [keyWords=[undefined, null]]
+ * @param {any[]} [keyWords]
  * @returns {T}
- * @example 
+ * @example
  * ```
  * // Output: {a:1,d:2}
  * clearInvalidKeys({a:1,b:null,c:undefined,d:2})

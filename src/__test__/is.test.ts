@@ -6,7 +6,7 @@ it('getType', () => {
   expect(_.getType('')).toEqual('String')
   expect(_.getType(true)).toEqual('Boolean')
   expect(_.getType(Symbol('a'))).toEqual('Symbol')
-  expect(_.getType(BigInt("0x1fffffffffffff"))).toEqual('BigInt')
+  expect(_.getType(BigInt('0x1fffffffffffff'))).toEqual('BigInt')
   expect(_.getType(undefined)).toEqual('Undefined')
   expect(_.getType(null)).toEqual('Null')
   expect(_.getType({})).toEqual('Object')
@@ -15,7 +15,7 @@ it('getType', () => {
   expect(_.getType(/a/g)).toEqual('RegExp')
   expect(_.getType(new Set())).toEqual('Set')
   expect(_.getType(new Map())).toEqual('Map')
-  expect(_.getType(function () { })).toEqual('Function')
+  expect(_.getType(() => { })).toEqual('Function')
 })
 
 describe('测试所有类型判断', () => {
@@ -53,13 +53,13 @@ describe('测试所有类型判断', () => {
   })
   it('isRegExp', () => {
     expect(_.isRegExp(/a/)).toEqual(true)
-    expect(_.isRegExp(new RegExp('a'))).toEqual(true)
+    expect(_.isRegExp(new RegExp('^\\d\\.$'))).toEqual(true)
   })
   it('isDate', () => {
     expect(_.isDate(new Date())).toEqual(true)
   })
   it('isFunction', () => {
-    expect(_.isFunction(function () { })).toEqual(true)
+    expect(_.isFunction(() => { })).toEqual(true)
   })
 })
 
@@ -81,7 +81,6 @@ it('isPromise', () => {
   expect(_.isPromise(Promise.resolve())).toEqual(true)
 })
 
-
 it('int&float', () => {
   expect(_.isInt(1)).toEqual(true)
   expect(_.isFloat(1)).toEqual(false)
@@ -91,8 +90,6 @@ it('int&float', () => {
   expect(_.isFloat('1.1')).toEqual(false)
 })
 
-
-
 it('isEmpty', () => {
   expect(_.isEmpty(true)).toEqual(true)
   expect(_.isEmpty(false)).toEqual(true)
@@ -101,21 +98,21 @@ it('isEmpty', () => {
   expect(_.isEmpty(0)).toEqual(true)
   expect(_.isEmpty(1)).toEqual(false)
   expect(_.isEmpty(new Date())).toEqual(false)
-  expect(_.isEmpty(function () { })).toEqual(false)
+  expect(_.isEmpty(() => { })).toEqual(false)
   expect(_.isEmpty([])).toEqual(true)
   expect(_.isEmpty([1])).toEqual(false)
   expect(_.isEmpty(new Set())).toEqual(true)
   expect(_.isEmpty(new Set([1]))).toEqual(false)
   expect(_.isEmpty(new Map())).toEqual(true)
   expect(_.isEmpty(new Map([]))).toEqual(true)
-  expect(_.isEmpty(new Map([['a',1]]))).toEqual(false)
+  expect(_.isEmpty(new Map([['a', 1]]))).toEqual(false)
   expect(_.isEmpty({})).toEqual(true)
   expect(_.isEmpty({ a: 1 })).toEqual(false)
 })
 
 it('isEqual', () => {
-  expect(_.isEqual(1,1)).toEqual(true)
-  expect(_.isEqual(1,2)).toEqual(false)
+  expect(_.isEqual(1, 1)).toEqual(true)
+  expect(_.isEqual(1, 2)).toEqual(false)
   expect(_.isEqual('1', '1')).toEqual(true)
   expect(_.isEqual('1', '2')).toEqual(false)
   expect(_.isEqual(true, true)).toEqual(true)

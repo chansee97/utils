@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs'
-import path from 'path'
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
 import color from 'ansi-colors'
 
 const msgPath = path.resolve('.git/COMMIT_EDITMSG')
@@ -12,14 +12,13 @@ if (!commitRE.test(msg)) {
   console.error(
         `  ${color.bgRed.white(' ERROR ')} ${color.red(
             'invalid commit message format.',
-        )}\n\n${
-            color.red(
-                '  Proper commit message format is required for automated changelog generation. Examples:\n\n',
-            )
+        )}\n\n${color.red(
+            '  Proper commit message format is required for automated changelog generation. Examples:\n\n',
+        )
         }    ${color.green('fea: add \'comments\' option')}\n`
         + `    ${color.green(
             'fix: handle events on blur',
         )}`,
   )
-  process.exit(1)
+  require('node:process').exit(1)
 }

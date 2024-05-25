@@ -1,9 +1,8 @@
-import { describe, expect, it } from 'vitest'
-import { capitalize, extractText, byteSize } from '../string'
-
+import { expect, it } from 'vitest'
+import { byteSize, capitalize, extractText } from '../string'
 
 it('extractText', () => {
-  expect(extractText("<p>Hello, <em>world</em>!&nbsp;</p>")).equal('Hello, world!')
+  expect(extractText('<p>Hello, <em>world</em>!&nbsp;</p>')).equal('Hello, world!')
   expect(extractText('<h1>Title</h1><p>Paragraph</p>')).equal('TitleParagraph')
   expect(extractText('&nbsp;&nbsp;&nbsp;Multiple spaces')).equal('Multiple spaces')
 })
